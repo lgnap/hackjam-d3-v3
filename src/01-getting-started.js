@@ -1,5 +1,5 @@
 // Import d3 from d3
-import d3 from 'd3'
+import d3 from 'd3';
 
 /**
  * Create a function called getD3 that returns the imported d3
@@ -7,7 +7,7 @@ import d3 from 'd3'
  */
 
 export function getD3() {
-  return d3
+  return d3;
 }
 
 /**
@@ -17,6 +17,6 @@ export function getD3() {
  */
 export function functionThatReturnsFunction(d3obj) {
   return function() {
-    return d3obj
-  }
+    return d3obj;
+  };
 }
