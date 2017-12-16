@@ -17,10 +17,10 @@ const updateNumbers = (arrayNumbers = []) => {
 /**
  * Transition that will used to make animation
  */
-const updateTransition = d3.transition().duration(1750);
-const enterTransition = d3.transition().duration(1250);
-const exitDuration = d3.transition().duration(750);
-const updateAndEnterTransition = d3.transition().duration(2000);
+//const updateTransition = d3.transition().duration(1750);
+//const enterTransition = d3.transition().duration(1250);
+//const exitDuration = d3.transition().duration(750);
+//const updateAndEnterTransition = d3.transition().duration(2000);
 
 /**
  * Select the element with demo-join-and-update-pattern id;
@@ -67,8 +67,10 @@ export const update = inputs => {
    */
   text
     .exit()
+    .transition()
+    .duration(750)
     .style('fill', 'red')
-    .attr('y', 60)
+    .attr('y', 150)
     .attr('class', 'removed')
     .remove();
 
@@ -80,8 +82,13 @@ export const update = inputs => {
    */
   text
     .attr('class', 'updated')
+    .transition()
+    .duration(500)
     .style('fill', 'blue')
-    .attr('x', (d, i) => i * 45);
+    .attr('x', (d, i) => i * 45)
+    .text(function(d) {
+      return d;
+    });
 
   /**
    * Get the 'enter' selection, then
@@ -92,13 +99,17 @@ export const update = inputs => {
    * - update his 'x' attribute with the following value '(d, i) => i * 45'
    * - Set his innerText to binded data
    */
-  const enter = text
+  text
     .enter()
     .append('text')
     .attr('class', 'new')
+    .attr('y', -150)
+    .transition()
+    .duration(1250)
     .style('fill', 'green')
     .attr('dy', '.35em')
     .attr('x', (d, i) => i * 45)
+    .attr('y', 0)
     .text(function(d) {
       return d;
     });
