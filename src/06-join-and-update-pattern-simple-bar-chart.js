@@ -29,6 +29,12 @@ import * as d3 from 'd3';
 
 const MIN_VALUE = 100;
 const MAX_VALUE = 300;
+const WIDTH = 200;
+
+const scale = d3.scale
+  .linear()
+  .domain([MIN_VALUE, MAX_VALUE])
+  .range([0, WIDTH]);
 
 export let data = [
   {
@@ -106,7 +112,7 @@ export const update = inputs => {
   values
     .style('background-color', '#8eb3dc')
     .style('margin-top', '10px')
-    .style('width', d => d.value + 'px')
+    .style('width', d => scale(d.value) + 'px')
     .style('height', '20px')
     .text(function(d) {
       return d.label;
@@ -127,7 +133,7 @@ export const update = inputs => {
     .classed('new', true)
     .style('background-color', '#00e4e4')
     .style('margin-top', '10px')
-    .style('width', d => d.value + 'px')
+    .style('width', d => scale(d.value) + 'px')
     .style('height', '20px')
     .text(d => d.label);
 };
